@@ -1,5 +1,7 @@
 # orbita-sso 1.x integration API
 
+Dependency: [`orbita-sso`](https://www.npmjs.com/package/orbita-sso), verified public release 1.0.0. Install with `npm install orbita-sso@^1` using the existing server package manager. [Source and full tutorial](https://github.com/WhiteRabbitCoder/orbita-sso).
+
 ## Registration
 
 The administrator registers an application per environment, delivers its backend base URL, client ID and secret, and allowlists the callback exactly. Launcher URL points to the **app's** login route. Central logout also requires an allowlisted post-logout URI. The package does not create clients or modify their administrative policy.

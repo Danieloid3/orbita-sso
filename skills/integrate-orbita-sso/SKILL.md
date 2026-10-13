@@ -4,6 +4,7 @@ description: Integrate server-side JavaScript or TypeScript applications with Or
 license: MIT
 metadata:
   package: orbita-sso
+  package-url: https://www.npmjs.com/package/orbita-sso
   package-major: "1"
   contract: "orbita-sso-client-1.0"
 ---
@@ -11,6 +12,18 @@ metadata:
 # Integrate Órbita SSO
 
 Connect the application using `orbita-sso` rather than duplicating its discovery, token exchange or signature-verification code. This skill targets Node.js 22+, JavaScript ESM and TypeScript. It is portable procedural guidance; it needs the agent's ordinary repository and command tools, not a specific connector.
+
+## Dependency and download
+
+The dependency is **[`orbita-sso` on npm](https://www.npmjs.com/package/orbita-sso)**. The first verified public release is **1.0.0**. Install a compatible 1.x release in the application's server:
+
+```sh
+npm install orbita-sso@^1
+```
+
+Respect the application's existing package manager and lockfile. Add `express` or `pg` only when the corresponding adapter is used. Do not install this confidential-client SDK into a browser-only application.
+
+Source, tutorial and release reports: [WhiteRabbitCoder/orbita-sso](https://github.com/WhiteRabbitCoder/orbita-sso). Manual download: [orbita-sso-1.0.0.tgz](https://registry.npmjs.org/orbita-sso/-/orbita-sso-1.0.0.tgz). Verify the URL for another release with `npm view orbita-sso@1.0.0 dist.tarball`; prefer installing the npm dependency normally.
 
 ## Inspect and choose the integration boundary
 
