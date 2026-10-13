@@ -10,6 +10,8 @@ Esta carpeta es un proyecto independiente del monorepo de Match. La fuente de di
 
 Desde esta carpeta, con Node 22+:
 
+Antes de publicar interactivamente, activa 2FA en la cuenta npm: **Account → Two-Factor Authentication → Enable 2FA**. Registrar una llave/passkey requiere que el propietario complete la autenticación del navegador (por ejemplo, Windows Hello). Haber ejecutado `npm login` no sustituye ese requisito: una cuenta sin 2FA puede iniciar sesión y recibir 403 al publicar. Consulta [la configuración oficial de 2FA](https://docs.npmjs.com/configuring-two-factor-authentication/).
+
 ```bash
 npm ci
 npm run release:check
@@ -29,7 +31,7 @@ npm login
 npm publish ./orbita-sso-1.0.0.tgz --access public
 ```
 
-Al publicar un tarball, no se vuelven a ejecutar los scripts del proyecto: usa el artefacto validado y no lo edites después. npm puede pedir autenticación/2FA en el navegador; complétala con tu cuenta. No necesitas poner un token npm dentro del repositorio.
+Al publicar un tarball, no se vuelven a ejecutar los scripts del proyecto: usa el artefacto validado y no lo edites después. Completa la verificación 2FA que solicite npm en el navegador con tu cuenta. No necesitas poner un token npm dentro del repositorio.
 
 Una vez publicado:
 
