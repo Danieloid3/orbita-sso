@@ -1,0 +1,84 @@
+{
+  "name": "orbita-sso",
+  "version": "1.0.0",
+  "description": "Server-side JavaScript integration for Orbita SSO: automatic role synchronization, secure sessions and explicit account migration.",
+  "type": "module",
+  "license": "MIT",
+  "repository": { "type": "git", "url": "git+https://github.com/WhiteRabbitCoder/orbita-sso.git" },
+  "homepage": "https://github.com/WhiteRabbitCoder/orbita-sso#readme",
+  "bugs": { "url": "https://github.com/WhiteRabbitCoder/orbita-sso/issues" },
+  "engines": {
+    "node": ">=22"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./express": {
+      "types": "./dist/express.d.ts",
+      "import": "./dist/express.js"
+    },
+    "./postgres": {
+      "types": "./dist/postgres.d.ts",
+      "import": "./dist/postgres.js"
+    }
+  },
+  "files": [
+    "dist",
+    "docs",
+    "examples",
+    "sql",
+    "skills",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md",
+    "SECURITY.md"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "npm run build && node --test test/*.test.mjs",
+    "check": "npm run typecheck && npm test && node scripts/check-docs.mjs",
+    "test:package": "npm run build && node scripts/test-package.mjs",
+    "test:e2e": "playwright test --config e2e/playwright.config.mjs",
+    "prepack": "npm run build",
+    "prepublishOnly": "npm run check",
+    "release:check": "npm run check && npm pack --dry-run"
+  },
+  "keywords": [
+    "orbita",
+    "riwi",
+    "sso",
+    "authentication",
+    "express",
+    "typescript"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "dependencies": {
+    "jose": "^6.2.12"
+  },
+  "peerDependencies": {
+    "express": "^4.21.2 || ^5.0.0"
+  },
+  "peerDependenciesMeta": {
+    "express": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@electric-sql/pglite": "^0.5.8",
+    "@playwright/test": "^1.64.0",
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.0.0",
+    "@types/pg": "^8.23.1",
+    "express": "^5.2.1",
+    "pg": "^8.18.0",
+    "typescript": "^5.9.3"
+  }
+}

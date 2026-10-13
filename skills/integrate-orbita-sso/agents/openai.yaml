@@ -1,0 +1,4 @@
+interface:
+  display_name: "Órbita SSO Integration"
+  short_description: "Connect Node apps to Órbita SSO with orbita-sso"
+  default_prompt: "Use $integrate-orbita-sso to connect this application to Órbita using the orbita-sso package and validate its roles, sessions and account links."
