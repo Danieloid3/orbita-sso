@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.1
+
+- Distribución pública limitada al SDK, documentación general y skill.
+- Validación específica de aplicaciones, fixtures e informes mantenidos internamente.
+- Skill con enlace npm, descarga del SDK e instrucciones de instalación.
+
 ## 1.0.0
 
 - Cliente Node/TypeScript para Orbita SSO Client Contract v1.0 con verificación RS256/JWKS.

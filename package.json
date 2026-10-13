@@ -1,6 +1,6 @@
 {
   "name": "orbita-sso",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Server-side JavaScript integration for Orbita SSO: automatic role synchronization, secure sessions and explicit account migration.",
   "type": "module",
   "license": "MIT",
@@ -28,7 +28,11 @@
   },
   "files": [
     "dist",
-    "docs",
+    "docs/TUTORIAL.md",
+    "docs/CONTRACT.md",
+    "docs/MIGRATION.md",
+    "docs/PUBLISHING.md",
+    "docs/VERIFICATION.md",
     "examples",
     "sql",
     "skills",
@@ -43,7 +47,6 @@
     "test": "npm run build && node --test test/*.test.mjs",
     "check": "npm run typecheck && npm test && node scripts/check-docs.mjs",
     "test:package": "npm run build && node scripts/test-package.mjs",
-    "test:e2e": "playwright test --config e2e/playwright.config.mjs",
     "prepack": "npm run build",
     "prepublishOnly": "npm run check",
     "release:check": "npm run check && npm pack --dry-run"
@@ -73,7 +76,6 @@
   },
   "devDependencies": {
     "@electric-sql/pglite": "^0.5.8",
-    "@playwright/test": "^1.64.0",
     "@types/express": "^5.0.0",
     "@types/node": "^22.0.0",
     "@types/pg": "^8.23.1",

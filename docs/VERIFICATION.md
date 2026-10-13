@@ -43,10 +43,6 @@ Sin esa variable, la prueba de conexiones PostgreSQL reales aparece como skipped
 
 Esta verificación estructural no equivale a haber observado una integración completa hecha por todos los agentes soportados. La distribución usa `WhiteRabbitCoder/orbita-sso` como fuente GitHub del CLI de skills.sh; el directorio del sitio puede tardar en reflejar una instalación y no se presume indexación inmediata.
 
-## E2E con Órbita real y Panel
-
-Se ejecutó el código real de Órbita y Panel en Docker, con PostgreSQL y fixtures Moodle. Los 8 escenarios Chromium pasaron, incluida revocación, logout central y caída del proveedor. Consulta [el reporte y sus límites](E2E_REPORT.md) y [la integración de Panel](PANEL.md).
-
 ## Validación del ambiente objetivo
 
 Antes de usar la app integrada en producción, prueba login real desde tarjeta y botón, asignación/revocación de roles, estado inactivo de usuario/app, callbacks registrados, logout central y migración aprobada con sus políticas reales. Los ejemplos no cambian los contratos locales de sesión de TeamUp o la API Python de Match automáticamente.

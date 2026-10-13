@@ -10,3 +10,8 @@ artifacts-*.json
 artifacts-*.txt
 test-results/
 playwright-report/
+e2e/
+docs/e2e/
+docs/E2E_REPORT.md
+docs/PANEL.md
+RELEASE_REPORT.md

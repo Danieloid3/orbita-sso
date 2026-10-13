@@ -2,7 +2,7 @@
 
 ## Entrega preparada
 
-El nombre es `orbita-sso`, versión inicial `1.0.0`, público y licencia MIT. El nombre respondió 404 en el registro al prepararlo; eso no reserva el nombre. npm decide disponibilidad y permisos al publicar. Si cambia antes de publicar, actualiza `name` y los imports de documentación/ejemplos/skill, luego repite los checks.
+El nombre es `orbita-sso`, distribución pública y licencia MIT. La versión actual del proyecto está en `package.json`; comprueba npm antes de publicar porque una versión existente no puede reemplazarse.
 
 Esta carpeta es un proyecto independiente del monorepo de Match. La fuente de distribución es `WhiteRabbitCoder/orbita-sso` en GitHub. Publicar no requiere tocar claves o credenciales de Railway. Comprueba el registro npm para conocer las versiones publicadas.
 
@@ -28,7 +28,7 @@ Puedes publicar el artefacto ya construido:
 
 ```bash
 npm login
-npm publish ./orbita-sso-1.0.0.tgz --access public
+npm publish ./orbita-sso-<version>.tgz --access public
 ```
 
 Al publicar un tarball, no se vuelven a ejecutar los scripts del proyecto: usa el artefacto validado y no lo edites después. Completa la verificación 2FA que solicite npm en el navegador con tu cuenta. No necesitas poner un token npm dentro del repositorio.

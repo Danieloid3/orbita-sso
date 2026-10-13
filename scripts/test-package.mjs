@@ -19,6 +19,7 @@ assert.ok(files.includes('dist/index.d.ts'));
 assert.ok(files.includes('sql/postgres.sql'));
 assert.ok(files.includes('skills/integrate-orbita-sso/SKILL.md'));
 assert.ok(!files.some((file) => /^(src|test|node_modules|\.env|scripts|artifacts)(\/|$)/.test(file)));
+assert.ok(!files.some((file) => /^(e2e|docs\/e2e)(\/|$)|^(RELEASE_REPORT\.md|docs\/(E2E_REPORT|PANEL)\.md)$/.test(file)), 'Internal application validation must not ship in the public package');
 const consumer = await mkdtemp(join(tmpdir(), 'orbita-sso-consumer-'));
 await writeFile(join(consumer, 'package.json'), JSON.stringify({ private: true, type: 'module' }));
 run([npmCli, 'install', '--ignore-scripts', '--no-audit', '--no-fund', join(root, info.filename), 'express@5', 'pg@8', 'typescript@5.9.3', '@types/node@22', '@types/express@5', '@types/pg@8'], consumer);

@@ -94,8 +94,6 @@ Las demás mutaciones de tu aplicación necesitan su propia protección CSRF. El
 - [Servidor Express ejecutable](examples/express/server.mjs).
 - [Handler Request/Response para servidores Node](examples/web/handler.mjs).
 - [Skill instalable para agentes](skills/integrate-orbita-sso/SKILL.md).
-- [Integración Next.js con Panel](docs/PANEL.md).
-- [Reporte de aceptación Docker y navegador](docs/E2E_REPORT.md).
 
 Instala la skill desde GitHub con el CLI de skills.sh:
 
