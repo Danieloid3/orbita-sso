@@ -4,7 +4,7 @@ Every Órbita browser login integration includes its official mark next to a loc
 
 ## Asset
 
-Use an existing official Órbita asset in the application when available. Otherwise copy [the bundled official SVG](../assets/orbita.svg) into the app's public brand assets, for example `public/brands/orbita.svg`. The bundled artwork comes from the original Órbita frontend mark also used in RiwiAsistencia; it is not an approximation.
+Use an existing official Órbita asset in the application when available. Otherwise copy [the bundled official SVG](../assets/orbita.svg) into the app's public brand assets, for example `public/brands/orbita.svg`. The bundled artwork is the official Órbita mark.
 
 Preserve its geometry, viewBox, aspect ratio and approved colors. Display the whole mark with `object-fit: contain`, usually 24–28 px, with space between mark and label. Use an official supplied variant when the background requires it; do not recolor or redraw it arbitrarily. Serve it locally instead of depending on a remote logo URL at login time.
 
