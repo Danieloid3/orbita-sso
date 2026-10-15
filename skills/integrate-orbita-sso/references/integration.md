@@ -1,6 +1,6 @@
 # orbita-sso 1.x integration API
 
-Dependency: [`orbita-sso`](https://www.npmjs.com/package/orbita-sso), verified public release 1.0.0. Install with `npm install orbita-sso@^1` using the existing server package manager. [Source and full tutorial](https://github.com/WhiteRabbitCoder/orbita-sso).
+Dependency: [`orbita-sso`](https://www.npmjs.com/package/orbita-sso). Install with `npm install orbita-sso@^1` using the existing server package manager. [Source and full tutorial](https://github.com/WhiteRabbitCoder/orbita-sso).
 
 ## Registration
 
@@ -56,7 +56,7 @@ return existingRouter(request);
 - `routePrefix`: `/auth/orbita`. GET `/login`, `/callback`, `/session`; POST `/logout`.
 - `roles`: complete list `{key, displayName, description?}`. Up to 100 unique keys; lowercase `[a-z0-9][a-z0-9._-]*`, max 80; display name max 120, description max 500. Empty catalog means deactivate all synchronized roles.
 - `syncRolesOnInitialize`: true. Disable only when a deployment step explicitly calls `client.syncRoles()`. Avoid mixed catalogs in rolling deployments.
-- `roleMode`: multiple; single limits normal identities to one app role. No recognized role means no app access.
+- `roleMode`: single by default, matching the current provider's one-role contract. multiple is an explicit compatibility option for older providers. A full catalog can contain many roles; a normal identity receives one. Empty roles are valid only for migration evidence, never app access.
 - `resolveUser(identity, request)`: optional. Default public user `{ id: subject, email, name }`. Existing apps resolve by stable subject, check account status/conflicts and return a **public projection**, never an ORM object with password hashes.
 - `successRedirect`: `/`; `errorRedirect`: `/login`. Fixed trusted configuration; no user-supplied return URL support.
 - `introspection`: always; expiry skips current revocation checks and still enforces absolute expiration.

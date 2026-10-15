@@ -4,7 +4,7 @@
 
 El nombre es `orbita-sso`, distribución pública y licencia MIT. La versión actual del proyecto está en `package.json`; comprueba npm antes de publicar porque una versión existente no puede reemplazarse.
 
-Esta carpeta es un proyecto independiente del monorepo de Match. La fuente de distribución es `WhiteRabbitCoder/orbita-sso` en GitHub. Publicar no requiere tocar claves o credenciales de Railway. Comprueba el registro npm para conocer las versiones publicadas.
+Esta carpeta es independiente de las aplicaciones consumidoras. La fuente de distribución es `WhiteRabbitCoder/orbita-sso` en GitHub. Publicar requiere credenciales npm del propietario, sin modificar los despliegues o secretos de las aplicaciones. Comprueba el registro npm para conocer las versiones publicadas.
 
 ## Publicar el paquete
 

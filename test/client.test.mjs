@@ -87,10 +87,12 @@ for (const [label, claims, code] of [
   });
 }
 
-test('single-role policy rejects multiple roles; default preserves all roles', async () => {
+test('current contract defaults to one role; multiple roles require explicit legacy compatibility', async () => {
   const api = await fixture();
   const token = await api.sign({ roles: ['staff', 'admin'] });
-  assert.deepEqual((await api.sso.client.verifyToken(token)).roles, ['staff', 'admin']);
+  await assert.rejects(api.sso.client.verifyToken(token), { code: 'access_denied' });
+  const legacy = new OrbitaClient({ ...api.options, roleMode: 'multiple' });
+  assert.deepEqual((await legacy.verifyToken(token)).roles, ['staff', 'admin']);
   const single = new OrbitaClient({ ...api.options, roleMode: 'single' });
   await assert.rejects(single.verifyToken(token), { code: 'access_denied' });
 });

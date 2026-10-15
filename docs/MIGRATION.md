@@ -70,29 +70,20 @@ Un sujeto ya vinculado a otra cuenta, un correo perteneciente a otra persona, un
 
 Después de completar la adopción de la población objetivo, desactiva JIT/migration en Órbita y elimina el adaptador opcional si ya no se necesita. Conserva historial de aprobaciones y vínculos. Antes de operar sobre datos reales, exporta y revisa un dry-run de candidatos con el repositorio local de la app.
 
-## Adaptar TeamUp
+## Servidor Node con autenticación existente
 
-TeamUp ya concentra el protocolo en Node/Express, guarda state y nonce en PostgreSQL y tiene catálogo de seis roles. Puede sustituir discovery, JWT/JWKS, catálogo, adopción y logout-ticket por `OrbitaClient`, conservando sus tokens/cookies actuales. Esta adopción del **cliente** reduce riesgo de cambiar su autenticación local.
+Usa `OrbitaClient` si tu aplicación debe conservar sus propias cookies, JWT o refresh tokens. Sustituye discovery, verificación, sincronización de catálogo e introspección; conserva la semántica de sus guards y limita cualquier renovación al vencimiento del token de Órbita.
 
-Si adopta el handler completo, sus guards y refresh deben pasar a la sesión opaca del SDK, o coexistir con un adapter claramente definido. No basta reemplazar el callback: los endpoints actuales esperan sus JWT/refresh tokens locales.
+Si eliges el handler completo, adapta todos los consumidores de sesión al identificador opaco del SDK. Cambiar solo el callback no actualiza los endpoints, el frontend ni el mecanismo de refresh existentes.
 
-Traducción de roles actual:
+Define una traducción explícita entre el rol legado y una clave estable del catálogo, por ejemplo `OWNER → owner` y `MEMBER → member`. El catálogo puede tener varios roles posibles; la identidad normal recibe exactamente uno. Si una cuenta antigua tenía varios roles, requiere una decisión revisada sobre su rol de destino; no elijas automáticamente el más privilegiado.
 
-| Órbita | TeamUp |
-|---|---|
-| `admin` | `ADMIN` |
-| `staff` | `STAFF` |
-| `coder` | `CODER` |
-| `tl_development` | `TL_DEVELOPMENT` |
-| `tl_soft_skills` | `TL_SOFT_SKILLS` |
-| `tl_english` | `TL_ENGLISH` |
+Un token ordinario con un rol distinto del legado es un conflicto o un cambio administrativo, no una autorización para adoptar otro rol. Las asignaciones en revisión deben resolverse en Órbita. Solo `migration: true` con `roles: []` permite iniciar la adopción, y una negativa del proveedor nunca activa un rol de respaldo.
 
-Usa `roleMode: 'single'`. El código local revisado de TeamUp intenta adoptar un rol también cuando el JWT contiene un rol distinto al legado; el proveedor revisado exige un token de migración vacío. Esa rama debe pasar a conflicto/vinculación aprobada, no a `adopt-role`. La librería impide esa adopción incorrecta.
+## Frontend JavaScript y API en otro lenguaje
 
-## Adaptar Talent Match
+Instala el SDK en el servidor Node que sea dueño del flujo SSO, no en una SPA. Si una API en otro lenguaje es la dueña de la sesión y del canje, conserva esa frontera: este paquete no sustituye su verificación ni su contrato de sesión.
 
-Match tiene inicio/callback en su servidor TanStack JavaScript; su API Python canjea/verifica el código y emite sesión local. La política actual rechaza la vinculación automática por correo y resuelve roles con prioridad `admin > ta_leader > recruiter`.
+Mover el canje a Node requiere diseñar una comunicación autenticada entre servicios para que la API acepte evidencia verificable. No envíes una identidad JSON sin autenticación como si fuera confiable. El adaptador del otro lenguaje debe implementar el mismo contrato HTTP y las mismas invariantes de firma, audiencia, state, vigencia y vinculación.
 
-La primera versión del paquete **no reemplaza el backend Python**. Para conservar la arquitectura, el futuro paquete Python sustituirá su adaptador confidencial y JavaScript seguirá consumiendo las rutas internas del API. Otra arquitectura posible es mover el canje a Node y crear un endpoint Python autenticado entre servicios que reciba identidad verificable y emita sesión local; eso exige diseñar y probar un contrato nuevo. No envíes al API una identidad JSON sin autenticación como si ya fuera confiable.
-
-El handler Request/Response demuestra cómo montar las rutas en un servidor Node/TanStack para apps nuevas. No afirma que montar ese handler sustituya las cookies `rm_access`/`rm_refresh` actuales de Match. Las migraciones de TeamUp/Match en producción son trabajo separado de publicar esta librería.
+El handler `Request`/`Response` puede montarse en cualquier servidor Node compatible, siempre que sus rutas y guards compartan el mismo contrato de sesión. La integración con datos de negocio, los IDs locales y los permisos internos sigue perteneciendo a cada aplicación.

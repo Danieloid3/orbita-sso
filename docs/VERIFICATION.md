@@ -45,4 +45,4 @@ Esta verificación estructural no equivale a haber observado una integración co
 
 ## Validación del ambiente objetivo
 
-Antes de usar la app integrada en producción, prueba login real desde tarjeta y botón, asignación/revocación de roles, estado inactivo de usuario/app, callbacks registrados, logout central y migración aprobada con sus políticas reales. Los ejemplos no cambian los contratos locales de sesión de TeamUp o la API Python de Match automáticamente.
+Antes de usar la app integrada en producción, prueba login real desde tarjeta y botón, asignación/cambio/revocación del rol, revisión administrativa pendiente, estado inactivo de usuario/app, callbacks registrados, logout central y migración aprobada con sus políticas reales. Los ejemplos no sustituyen automáticamente los contratos de sesión o APIs existentes de la aplicación consumidora.

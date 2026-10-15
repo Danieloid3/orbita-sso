@@ -28,6 +28,7 @@ export interface ClientOptions {
   clientSecret: string;
   redirectUri: string;
   roles: readonly Role[];
+  /** Current provider uses one app role. multiple is an explicit legacy-provider compatibility option. */
   roleMode?: "single" | "multiple";
   syncRolesOnInitialize?: boolean;
   development?: boolean;

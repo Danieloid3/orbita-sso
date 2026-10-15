@@ -88,7 +88,7 @@ Las demás mutaciones de tu aplicación necesitan su propia protección CSRF. El
 
 - [Tutorial completo: nueva app, frontend separado y producción](docs/TUTORIAL.md).
 - [Contrato lógico, interfaces y defaults](docs/CONTRACT.md).
-- [Migración de cuentas y adaptación de TeamUp/Match](docs/MIGRATION.md).
+- [Migración de cuentas existentes y adaptación de sesiones](docs/MIGRATION.md).
 - [Publicar el paquete en npm y distribuir la skill](docs/PUBLISHING.md).
 - [Verificación y límites de las pruebas](docs/VERIFICATION.md).
 - [Servidor Express ejecutable](examples/express/server.mjs).

@@ -1,6 +1,6 @@
 # Contrato lógico de integración — orbita-sso 1.x
 
-Este contrato empaqueta el **Orbita SSO Client Contract v1.0**. Su fuente es discovery y el comportamiento del proveedor, no un estándar OAuth/OIDC supuesto. Se revisaron las implementaciones locales de Órbita, TeamUp y Talent Match al construir esta versión.
+Este contrato empaqueta el **Orbita SSO Client Contract v1.0**. Su fuente es discovery y el comportamiento del proveedor, no un estándar OAuth/OIDC supuesto. Es independiente de una aplicación consumidora concreta.
 
 ## Responsabilidades
 
@@ -25,7 +25,7 @@ Este contrato empaqueta el **Orbita SSO Client Contract v1.0**. Su fuente es dis
 | `resolveUser(identity, request)` | Opcional; devuelve un usuario público con `id` string. Default: ID, nombre y correo de Órbita. |
 | `migration` | Desactivada; adaptador de migración explícita. |
 | `syncRolesOnInitialize` | `true`; catálogo completo enviado una vez por instancia, antes de aceptar tráfico. |
-| `roleMode` | `multiple`; `single` exige como máximo un rol. Roles vacíos solo se aceptan como evidencia de migración. |
+| `roleMode` | `single`; exige un rol por identidad normal, según el contrato actual. Roles vacíos solo se aceptan como evidencia de migración. `multiple` es una opción explícita para proveedores antiguos cuyo contrato permita varios roles. |
 | `introspection` | `always`; `expiry` no consulta revocaciones centrales. |
 | `logout`, `postLogoutUri` | `local`; `central` requiere URI de retorno registrada. |
 | `sessionSameSite` | `lax`; `none` requiere HTTPS y una política de CORS/CSRF deliberada. |

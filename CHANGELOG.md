@@ -2,6 +2,8 @@
 
 ## 1.0.1
 
+- Verificación de un único rol por defecto, alineada con el contrato vigente; modo múltiple reservado a compatibilidad explícita con proveedores antiguos.
+- Guías y skill independientes de aplicaciones consumidoras concretas.
 - Distribución pública limitada al SDK, documentación general y skill.
 - Validación específica de aplicaciones, fixtures e informes mantenidos internamente.
 - Skill con enlace npm, descarga del SDK e instrucciones de instalación.

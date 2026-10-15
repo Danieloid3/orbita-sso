@@ -157,7 +157,7 @@ Para rotar secreto, actualiza el servidor dentro de la ventana vigente del prove
 | `invalid_state` | Login iniciado en otro host, cookies bloqueadas, segundo callback, cookie duplicada, más de 5 minutos. |
 | `provider_rejected` | Secreto, registro, callback o código expirado/reutilizado. Reiniciar login; no reintentar el código. |
 | `invalid_token` | Firma, audiencia, `kid`, expiración, tipos de claims; comprobar reloj y JWKS. |
-| `access_denied` | Roles reconocidos, política single/multiple, cuenta local activa. |
+| `access_denied` | Un rol reconocido por identidad normal, cuenta local activa y acceso vigente en Órbita. Si la asignación está en revisión, requiere intervención del administrador. |
 | `account_conflict` | Vinculación aprobada pendiente o colisión de correo/identidad. |
 | `migration_denied` | Token de migración, permisos JIT en Órbita, prueba de propiedad y rol válido. |
 | `provider_unavailable` | Conectividad, timeout, `429` o `5xx`; mostrar error recuperable. |

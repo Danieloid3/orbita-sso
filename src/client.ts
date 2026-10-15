@@ -40,7 +40,7 @@ export class OrbitaClient {
       if (!Number.isInteger(value) || value! < min! || value! > max!) throw new OrbitaError("configuration_error", 500);
     }
     if (options.roleMode && !["single", "multiple"].includes(options.roleMode)) throw new OrbitaError("configuration_error", 500);
-    this.options = Object.freeze({ ...options, baseUrl: base.origin, roles: Object.freeze(options.roles.map((role) => Object.freeze({ ...role }))) });
+    this.options = Object.freeze({ ...options, roleMode: options.roleMode ?? "single", baseUrl: base.origin, roles: Object.freeze(options.roles.map((role) => Object.freeze({ ...role }))) });
     this.fetcher = options.fetch ?? globalThis.fetch;
   }
 
