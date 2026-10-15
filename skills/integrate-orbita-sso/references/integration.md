@@ -4,9 +4,11 @@ Dependency: [`orbita-sso`](https://www.npmjs.com/package/orbita-sso). Install wi
 
 ## Registration
 
-The administrator registers an application per environment, delivers its backend base URL, client ID and secret, and allowlists the callback exactly. Launcher URL points to the **app's** login route. Central logout also requires an allowlisted post-logout URI. The package does not create clients or modify their administrative policy.
+The administrator registers an application per environment, delivers its backend base URL, client ID and secret, and allowlists the callback exactly. Launcher URL points to the **app's** login route. Central logout also requires an allowlisted post-logout URI. The package does not create clients or modify their administrative policy. Keep provider migration/JIT adoption disabled for ordinary first-login provisioning; user app-role assignments remain in Órbita.
 
 ## Full handler: Express recipe
+
+This recipe uses the default public identity projection and does not persist application user rows. For an app that needs local users, follow [account resolution](accounts.md); the core client gives the application control over live introspection before account writes and atomic persistence.
 
 ```js
 import express from 'express';
@@ -66,7 +68,7 @@ return existingRouter(request);
 - `development`: false; true permits memory stores and loopback HTTP, not arbitrary insecure remote hosts.
 - `onError`: receives `{code, status}` only. Unknown exceptions become `internal_error`.
 
-Frontend uses a login link, reads `/session` with `credentials: 'include'`, and posts `/logout` with `x-orbita-csrf` from the session response. The browser supplies Origin. Session cookies are opaque, HTTP-only, Secure over HTTPS, host-only and path `/`. The JWT never leaves the server store. Other application mutations need their own CSRF protection.
+Frontend uses a [branded login action with the official logo](login-button.md), reads `/session` with `credentials: 'include'`, and posts `/logout` with `x-orbita-csrf` from the session response. The browser supplies Origin. Session cookies are opaque, HTTP-only, Secure over HTTPS, host-only and path `/`. The JWT never leaves the server store. Other application mutations need their own CSRF protection.
 
 `getSession` returns `{user, identity, expiresAt, csrfToken}` or null. Outages may throw; do not catch an outage and allow access. Logout can close locally during provider outages; it reports `centralLogoutError` if it could not obtain a central ticket.
 
@@ -89,6 +91,8 @@ Persist an allowlisted presentation locale across the provider redirect if neede
 - `syncRoles()`, `introspect(token)`, `adoptRole(migrationToken, role)`, `centralLogoutUrl(postLogoutUri)`.
 
 The app then owns state/nonce, local cookies, CSRF and session lifetime. Do not exchange an arbitrary callback without browser-state validation. Preserve existing refresh/session behavior but bound the lifetime to `expiresAt`.
+
+For the approved first-login policy, validate the normal role-bearing token and asserted email, perform live introspection, then resolve/link/create the local user and persist session evidence atomically as described in [account resolution](accounts.md). Apply an email-domain restriction only if this application's requirements explicitly specify one; it is not the default. Role reconciliation follows the provider's normal assignment; it is distinct from legacy role adoption.
 
 Identity: `{subject, email, name, roles, tokenId, expiresAt, migration, attributes}`. Times are Unix seconds. Attributes are allowlisted provider extensions and never authorization roles.
 

@@ -1,8 +1,10 @@
-# Account migration
+# Exceptional account reconciliation and legacy role adoption
 
-The safe default is an administrator-reviewed unique mapping between local ID and Órbita subject, with role assignment in Órbita. Link beforehand and let `resolveUser` resolve by subject. Retain IDs and historical foreign keys; do not copy passwords.
+Normal first login uses [the approved automatic account policy](accounts.md): a currently authorized normal app-role token links the unique active matching email account or creates a user. There is no default email-domain restriction. It does not require provider migration mode, a CLI approval or role adoption.
 
-For JIT role adoption, the administrator must enable the provider's per-app migration/JIT policy. The callback must contain a signed `migration: true, roles: []` token. Ordinary app-role tokens cannot be used to override Órbita assignments.
+Use an administrator-reviewed unique mapping between local ID and Órbita subject for exceptional reconciliation, email changes, conflicting links or environments without trusted provider email assertions. Resolve conflicts through reviewed application tooling; never overwrite a stable link automatically. Retain IDs and historical foreign keys; do not copy passwords.
+
+For the separate legacy-role adoption workflow, the administrator must explicitly enable the provider's per-app migration/JIT policy. Keep it disabled for normal provisioning. The callback must contain a signed `migration: true, roles: []` token. Ordinary app-role tokens cannot be used to override Órbita assignments through adoption; their recognized assigned role is handled by normal account resolution.
 
 Configure this optional adapter:
 

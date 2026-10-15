@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="250 130 750 760" role="img" aria-labelledby="title desc">
+  <title id="title">Órbita — isotipo blanco</title>
+  <desc id="desc">Versión monocromática blanca del isotipo de Órbita.</desc>
+  <g fill="#958FDD">
+    <path d="M445 614C371 509 365 398 405 314C447 226 563 164 651 162C711 174 765 207 807 249C684 256 576 287 505 344C438 398 416 499 445 614Z"/>
+    <path d="M653 363C786 373 910 439 970 532C973 650 915 769 764 862C812 797 844 724 847 644C875 528 816 409 653 363Z"/>
+    <path d="M315 522C279 569 271 635 294 696C336 807 457 853 589 862C697 870 790 793 847 644C755 727 682 766 606 764C489 760 396 675 315 522Z"/>
+    <path d="M627 365C659 452 710 516 794 549C711 583 660 646 627 730C593 646 543 583 460 549C543 515 594 452 627 365Z"/>
+  </g>
+</svg>
